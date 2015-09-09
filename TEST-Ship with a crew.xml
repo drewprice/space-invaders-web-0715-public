@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite tests="5" errors="0" failures="0" time="0.002" timestamp="2015-09-09T13:06:45">
+		<testcase classname="Ship with a crew" name="`docked` should return false for ships with a crew" time="0">
+		</testcase>
+		<testcase classname="Ship with a crew" name="a crew member should return their ship when `ship` is called on them" time="0">
+		</testcase>
+		<testcase classname="Ship with a crew" name="should charge its phasers when a gunner calls `chargePhasers`" time="0">
+		</testcase>
+		<testcase classname="Ship with a crew" name="should have it&amp;apos;s warp drive set to &amp;quot;engaged&amp;quot; only when the pilot uses `engageWarpDrive`" time="0">
+		</testcase>
+		<testcase classname="Ship with a crew" name="should cloak when a defender `setsInvisibility`" time="0">
+		</testcase>
+	</testsuite>
+</testsuites>
+

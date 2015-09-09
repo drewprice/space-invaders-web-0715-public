@@ -1,9 +1,9 @@
 describe('CrewMember', function() {
   var tristan, jon, katie;
   beforeEach(function() {
-    tristan = new CrewMember('Pilot');
-    jon = new CrewMember('Defender');
-    katie = new CrewMember('Gunner');
+    tristan = new CrewMember('Pilot', engageWarpDrive);
+    jon     = new CrewMember('Defender', setsInvisibility);
+    katie   = new CrewMember('Gunner', chargePhasers);
   });
 
   it('should know their position', function() {
@@ -12,14 +12,14 @@ describe('CrewMember', function() {
     expect(katie.position).toBe('Gunner');
   });
 
-  it('should should return "Looking for a Rig" if they aren\'t assigned to a ship', function() {
-    expect(tristan.currentShip).toBe('Looking for a Rig');
+  it('should return "Looking for a Rig" if they aren\'t assigned to a ship', function() {
+    expect(tristan.currentShip()).toBe('Looking for a Rig');
   });
 
   it('should return "had no effect" when the crew member tries to use their special ability', function() {
-    expect(tristan.engageWarpDrive()).toBe('had no effect');
-    expect(jon.setsInvisibility()).toBe('had no effect');
-    expect(katie.chargePhasers()).toBe('had no effect');    
+    expect(tristan.activatePower()).toBe('had no effect');
+    expect(jon.activatePower()).toBe('had no effect');
+    expect(katie.activatePower()).toBe('had no effect');
   });
 });
 
@@ -33,6 +33,10 @@ describe('Spaceship', function() {
     expect(spaceship.name).toBe('The Krestel');
   });
 
+  it('should have a crew, initialized as an array', function() {
+    expect(spaceship.crew instanceof Array).toBe(true);
+  });
+
   it('should have the correct number of phasers (5)', function() {
     expect(spaceship.phasers).toBe(5);
   });
@@ -41,29 +45,29 @@ describe('Spaceship', function() {
     expect(spaceship.shields).toBe(4);
   });
 
-  it('should have it\'s cloaking set to false by default', function() {
+  it('should have it\'s cloaking down by default', function() {
     expect(spaceship.cloaked).toBe(false);
   });
 
-  it('should have it\'s warp drive set to "disengaged" by default', function() {
-    expect(spaceship.warpDrive).toBe('disengaged');
+  it('should have it\'s warp drive disengaged by default', function() {
+    expect(spaceship.warpDrive).toBe(false);
   });
 
   it('should be docked if it has no crew', function() {
     expect(spaceship.docked).toBe(true);
   });
 
-  it('should have it\'s `phasers` charge set to "uncharged" by default', function() {
-    expect(spaceship.phasersCharge).toBe('uncharged');
+  it('should have it\'s phasers uncharged by default', function() {
+    expect(spaceship.phasersReady).toBe(false);
   });
 });
 
 describe('Ship with a crew', function() {
   var tristan, jon, katie, spaceship;
   beforeEach(function() {
-    tristan = new CrewMember('Pilot');
-    jon = new CrewMember('Defender');
-    katie = new CrewMember('Gunner');
+    tristan   = new CrewMember('Pilot', engageWarpDrive);
+    jon       = new CrewMember('Defender', setsInvisibility);
+    katie     = new CrewMember('Gunner', chargePhasers);
     spaceship = new Spaceship('The Krestel', [tristan, jon, katie], 5, 4);
   });
 
@@ -71,30 +75,30 @@ describe('Ship with a crew', function() {
     expect(spaceship.docked).toBe(false);
   });
 
-  it('a crew member should return their ship when `currentShip` is called on them', function() {
-    expect(tristan.currentShip).toBe(spaceship);
-    expect(tristan.currentShip.name).toBe('The Krestel');
+  it('a crew member should return their ship when `ship` is called on them', function() {
+    expect(tristan.ship).toBe(spaceship);
+    expect(tristan.ship.name).toBe('The Krestel');
   });
 
   it('should charge its phasers when a gunner calls `chargePhasers`', function() {
-    tristan.chargePhasers();
-    expect(spaceship.phasersCharge).toBe('uncharged');
-    katie.chargePhasers();
-    expect(spaceship.phasersCharge).toBe('charged!');
+    tristan.activatePower();
+    expect(spaceship.phasersReady).toBe(false);
+    katie.activatePower();
+    expect(spaceship.phasersReady).toBe(true);
   });
 
   it('should have it\'s warp drive set to "engaged" only when the pilot uses `engageWarpDrive`', function() {
-    jon.engageWarpDrive();
-    expect(spaceship.warpDrive).toBe('disengaged');
-    tristan.engageWarpDrive();
-    expect(spaceship.warpDrive).toBe('engaged!');
+    jon.activatePower();
+    expect(spaceship.warpDrive).toBe(false);
+    tristan.activatePower();
+    expect(spaceship.warpDrive).toBe(true);
   });
 
   it('should cloak when a defender `setsInvisibility`', function() {
-    katie.setsInvisibility();
+    katie.activatePower();
     expect(spaceship.cloaked).toBe(false);
-    jon.setsInvisibility();
+    jon.activatePower();
     expect(spaceship.cloaked).toBe(true);
   });
-  
+
 });

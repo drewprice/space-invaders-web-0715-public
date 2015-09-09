@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite tests="3" errors="0" failures="0" time="0.006" timestamp="2015-09-09T13:06:45">
+		<testcase classname="CrewMember" name="should know their position" time="0.001">
+		</testcase>
+		<testcase classname="CrewMember" name="should return &amp;quot;Looking for a Rig&amp;quot; if they aren&amp;apos;t assigned to a ship" time="0.001">
+		</testcase>
+		<testcase classname="CrewMember" name="should return &amp;quot;had no effect&amp;quot; when the crew member tries to use their special ability" time="0">
+		</testcase>
+	</testsuite>
+</testsuites>
+

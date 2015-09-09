@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite tests="8" errors="0" failures="0" time="0.004" timestamp="2015-09-09T13:06:45">
+		<testcase classname="Spaceship" name="should know it&amp;apos;s own name" time="0">
+		</testcase>
+		<testcase classname="Spaceship" name="should have a crew, initialized as an array" time="0">
+		</testcase>
+		<testcase classname="Spaceship" name="should have the correct number of phasers (5)" time="0.001">
+		</testcase>
+		<testcase classname="Spaceship" name="should have the correct layer of shields (4)" time="0">
+		</testcase>
+		<testcase classname="Spaceship" name="should have it&amp;apos;s cloaking down by default" time="0">
+		</testcase>
+		<testcase classname="Spaceship" name="should have it&amp;apos;s warp drive disengaged by default" time="0.001">
+		</testcase>
+		<testcase classname="Spaceship" name="should be docked if it has no crew" time="0">
+		</testcase>
+		<testcase classname="Spaceship" name="should have it&amp;apos;s phasers uncharged by default" time="0">
+		</testcase>
+	</testsuite>
+</testsuites>
+
